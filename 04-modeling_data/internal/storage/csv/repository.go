@@ -2,6 +2,7 @@ package csv
 
 import (
 	"bufio"
+	"fmt"
 	"os"
 	"strconv"
 	"strings"
@@ -19,9 +20,9 @@ func NewRepository() beerscli.BeerRepo {
 
 // GetBeers fetch beers data from csv
 func (r *repository) GetBeers() ([]beerscli.Beer, error) {
-	f, _ := os.Open("04-modeling_data/data/beers.csv")
+	f, e := os.Open("04-modeling_data/data/beers.csv")
 	reader := bufio.NewReader(f)
-
+	fmt.Println(e)
 	var beers []beerscli.Beer
 
 	for line := readLine(reader); line != nil; line = readLine(reader) {
